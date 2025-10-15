@@ -1,9 +1,10 @@
 import js from '@eslint/js';
-import globals from 'globals';
-import pluginVue from 'eslint-plugin-vue';
 import pluginQuasar from '@quasar/app-vite/eslint';
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
 import prettierSkipFormatting from '@vue/eslint-config-prettier/skip-formatting';
+import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
+import pluginPerfectionist from 'eslint-plugin-perfectionist';
+import pluginVue from 'eslint-plugin-vue';
+import globals from 'globals';
 
 export default defineConfigWithVueTs(
   {
@@ -33,7 +34,7 @@ export default defineConfigWithVueTs(
    * pluginVue.configs["flat/recommended"]
    *   -> Above, plus rules to enforce subjective community defaults to ensure consistency.
    */
-  pluginVue.configs['flat/essential'],
+  pluginVue.configs['flat/recommended'],
 
   {
     files: ['**/*.ts', '**/*.vue'],
@@ -43,6 +44,49 @@ export default defineConfigWithVueTs(
   },
   // https://github.com/vuejs/eslint-config-typescript
   vueTsConfigs.recommendedTypeChecked,
+
+  {
+    files: ['**/*.vue'],
+    rules: {
+      'vue/block-order': [
+        'error',
+        {
+          order: ['script', 'template', 'style'],
+        },
+      ],
+    },
+  },
+
+  {
+    files: ['**/*.ts', '**/*.vue'],
+    plugins: {
+      perfectionist: pluginPerfectionist,
+    },
+    rules: {
+      'perfectionist/sort-exports': ['error', { order: 'asc', type: 'natural' }],
+      'perfectionist/sort-imports': [
+        'error',
+        {
+          groups: [
+            'type',
+            ['parent-type', 'sibling-type', 'index-type', 'internal-type'],
+            'builtin',
+            'external',
+            'internal',
+            ['parent', 'sibling', 'index'],
+            'side-effect',
+            'object',
+            'unknown',
+          ],
+          newlinesBetween: 'always',
+          order: 'asc',
+          type: 'natural',
+        },
+      ],
+      'perfectionist/sort-named-exports': ['error', { order: 'asc', type: 'natural' }],
+      'perfectionist/sort-named-imports': ['error', { order: 'asc', type: 'natural' }],
+    },
+  },
 
   {
     languageOptions: {
