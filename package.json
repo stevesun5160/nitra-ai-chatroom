@@ -2,7 +2,7 @@
   "name": "nitra-ai-chatbot",
   "version": "0.0.1",
   "description": "Nitra AI Chatroom UI Challenge",
-  "productName": "Quasar App",
+  "productName": "Nitra AI Chatroom UI",
   "author": "stevesun <stevesun5160@gmail.com>",
   "type": "module",
   "private": true,
