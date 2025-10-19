@@ -2,6 +2,8 @@
 
 Nitra AI Chatroom UI Challenge
 
+[Demo Site](https://nitra-ai-chatroom.vercel.app/)
+
 ## Install the dependencies
 
 ```bash
