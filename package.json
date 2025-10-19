@@ -17,6 +17,7 @@
   "dependencies": {
     "@quasar/extras": "1.16.4",
     "eslint-plugin-perfectionist": "^4.15.1",
+    "markdown-it": "^14.1.0",
     "quasar": "2.16.0",
     "vue": "3.5.17",
     "vue-router": "4.5.1"
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@eslint/js": "^9.14.0",
     "@quasar/app-vite": "2.1.0",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^20.5.9",
     "@vue/eslint-config-prettier": "^10.1.0",
     "@vue/eslint-config-typescript": "^14.4.0",
