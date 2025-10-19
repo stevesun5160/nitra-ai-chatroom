@@ -31,8 +31,14 @@ export function useMessage() {
 
   const messages = ref<Message[]>([]);
 
-  const isResponding = computed<boolean>(() =>
-    messages.value.some(({ role, isStreaming }) => role === 'assistant' && isStreaming),
+  const isResponding = computed<boolean>(
+    () =>
+      // Welcome Message should not shows loading
+      messages.value.length > 1 &&
+      messages.value.some(
+        ({ role, isStreaming, content }) =>
+          role === 'assistant' && (isStreaming || content === undefined), // isStreaming || Loading...
+      ),
   );
 
   function fetchBotResponseMessage(message: string) {
