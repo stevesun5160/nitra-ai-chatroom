@@ -5,39 +5,59 @@ Nitra AI Chatroom UI Challenge
 ## Install the dependencies
 
 ```bash
-yarn
+pnpm i
 # or
-npm install
+npm i
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+# Quasar App (nitra-ai-chatbot)
+
+Nitra AI Chatroom UI Challenge
+
+## Install the dependencies
 
 ```bash
-quasar dev
+pnpm i
 ```
 
-### Lint the files
+## Architecture
 
-```bash
-yarn lint
-# or
-npm run lint
-```
+### Feature-Based Structure
 
-### Format the files
+The codebase follows a feature-based organization under `src/features/`:
 
-```bash
-yarn format
-# or
-npm run format
-```
+- **chatroom feature** (`src/features/chatroom/`):
+  - `components/` - Vue components specific to the chatroom (ChatMessage, ChatContainer, ChatActions, etc.)
+  - `composables/` - Reusable Vue composition functions
+  - `types/` - TypeScript type definitions
 
-### Build the app for production
+### Key Composables
 
-```bash
-quasar build
-```
+**useMessage** (`src/features/chatroom/composables/useMessage.ts`)
 
-### Customize the configuration
+- Central message management logic
+- Handles user messages and simulated AI responses
+- Fetches mock responses from `MESSAGE_MOCK_MAP` with random delays (5-10s)
+- Manages message state and streaming status
+- Key functions: `onMessageSent()`, `appendWelcomeMessage()`, `fetchBotResponseMessage()`
 
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+**useTypingAnimation** (`src/features/chatroom/composables/useTypingAnimation.ts`)
+
+- Character-by-character typing animation for AI responses
+- Configurable speed and callbacks (onBegin, onTyping, onComplete)
+- Auto-cleanup on component unmount
+
+**useMarkdownRenderer** (`src/features/chatroom/composables/useMarkdownRenderer.ts`)
+
+- Renders markdown content using markdown-it library
+- Configured with: linkify, typographer, breaks enabled, html disabled
+
+### Message Flow
+
+1. User sends message via `onMessageSent()`
+2. User message appended to messages array
+3. "Thinking" placeholder message created with `content: undefined`
+4. After 300ms delay, placeholder is appended
+5. Mock response fetched from `MESSAGE_MOCK_MAP` (5-10s random delay)
+6. Typing animation renders response character-by-character
+7. Message streaming state tracked via `isStreaming` flag
