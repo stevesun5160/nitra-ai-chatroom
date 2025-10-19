@@ -38,7 +38,7 @@ export function useMessage() {
   function fetchBotResponseMessage(message: string) {
     return new Promise<string>((resolve) => {
       const response = MESSAGE_MOCK_MAP[message]?.message.content || ERROR_MESSAGE_CONTENT;
-      const randomNumber = createRandomNumber({ min: 1000, max: 2000 });
+      const randomNumber = createRandomNumber({ min: 5000, max: 10000 });
 
       setTimeout(() => {
         resolve(response);
