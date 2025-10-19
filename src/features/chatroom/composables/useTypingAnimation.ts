@@ -29,7 +29,7 @@ export function useTypingAnimation() {
       return;
     }
 
-    const displayedText = fullText.slice(0, currentIndex);
+    const displayedText = fullText.slice(0, currentIndex + 1);
     onTyping?.(displayedText);
 
     timerId.value = setTimeout(
