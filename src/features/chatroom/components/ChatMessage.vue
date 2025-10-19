@@ -21,7 +21,7 @@ watchEffect(() => {
 
 <template>
   <div class="message-row font-md" :class="{ sent: isSentByUser }">
-    <img v-if="!isSentByUser" src="/src/assets/nitra-filled.svg" alt="nitra-icon" />
+    <img v-if="!isSentByUser" src="/nitra-filled.svg" alt="nitra-icon" />
     <div
       class="message-container"
       :class="{ 'bg-gray-0': !isSentByUser, 'bg-teal-100': isSentByUser }"

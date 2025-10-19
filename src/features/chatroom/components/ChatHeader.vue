@@ -11,7 +11,7 @@ function onClick() {
 <template>
   <q-card-section class="chat-room-header bg-primary text-white">
     <div class="header-title">
-      <img src="src/assets/nitra.svg" alt="nitra-icon" class="nitra-icon" />
+      <img src="/nitra.svg" alt="nitra-icon" class="nitra-icon" />
       <span class="header-title">Nitra AI</span>
       <q-icon name="fa-solid fa-wand-magic-sparkles" size="24px" />
     </div>
